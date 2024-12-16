@@ -1,0 +1,12 @@
+[package]
+name = "walltheme"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+color-thief = "0.2.2"
+image = "0.25.5"
+lazy_static = "1.5.0"
+serde = { version = "1.0.216", features = ["derive"] }
+serde_json = "1.0.133"
+termion = "4.0.3"
