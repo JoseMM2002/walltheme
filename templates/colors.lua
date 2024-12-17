@@ -1,6 +1,6 @@
 local colors = {
 	foreground = "#{{white_hex}}",
-	background = "#{{black_bright_hex}}",
+	background = "#{{black_hex}}",
 	cursor = "#{{white_hex}}",
 	color0 = "#{{black_hex}}",
 	color1 = "#{{red_hex}}",
