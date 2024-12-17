@@ -125,12 +125,16 @@ fn main() {
         fs::write(output_path, rendered).expect("Could not write output");
     }
 
-    for (name, color) in theme.iter() {
+    let mut keys: Vec<String> = theme.keys().cloned().collect();
+    keys.sort();
+
+    for name in keys.iter() {
+        let color = theme.get(name).unwrap();
         println!(
-            "{}{}{}",
+            "{}    {} {}",
             color::Bg(color::Rgb(color.red, color.green, color.blue)),
-            name,
-            style::Reset
+            style::Reset,
+            name
         );
     }
 }
