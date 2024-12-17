@@ -1,6 +1,4 @@
-local M = {}
-
-M.colors = {
+local colors = {
 	foreground = "#{{white_hex}}",
 	background = "#{{black_bright_hex}}",
 	cursor = "#{{white_hex}}",
@@ -22,4 +20,4 @@ M.colors = {
 	color15 = "#{{white_bright_hex}}",
 }
 
-return M
+return colors
