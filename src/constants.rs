@@ -5,8 +5,8 @@ use lazy_static::lazy_static;
 use crate::{Config, RgbJson, Theme};
 
 pub const DEFAULT_CONFIG: Config = Config {
-    mix_factor: 0.2,
-    distance_threshold: 100.0,
+    mix_factor: 0.1,
+    distance_threshold: 50.0,
     palette_quality: 1,
     palette_max_colors: 255,
     brighter_factor: 1.4,
