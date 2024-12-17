@@ -2,14 +2,26 @@ use std::collections::HashMap;
 
 use lazy_static::lazy_static;
 
-use crate::{RgbJson, Theme};
+use crate::{Config, RgbJson, Theme};
+
+pub const DEFAULT_CONFIG: Config = Config {
+    mix_factor: 0.2,
+    distance_threshold: 100.0,
+    palette_quality: 1,
+    palette_max_colors: 255,
+    brighter_factor: 1.4,
+    bright_min: 50,
+};
+
+pub const DEFAULT_CONFIG_PATH: &str = ".config/walltheme/";
+pub const DEFAULT_TEMPLATES_PATH: &str = ".config/walltheme/templates/";
+pub const CACHE_PATH: &str = ".cache/walltheme/";
 
 lazy_static! {
     pub static ref OBJECTIVE_THEME: Theme = {
         let mut theme: Theme = HashMap::new();
-
         theme.insert(
-            "black",
+            "black".to_string(),
             RgbJson {
                 red: 0,
                 green: 0,
@@ -17,7 +29,7 @@ lazy_static! {
             },
         );
         theme.insert(
-            "red",
+            "red".to_string(),
             RgbJson {
                 red: 255,
                 green: 0,
@@ -25,7 +37,7 @@ lazy_static! {
             },
         );
         theme.insert(
-            "green",
+            "green".to_string(),
             RgbJson {
                 red: 0,
                 green: 255,
@@ -33,7 +45,7 @@ lazy_static! {
             },
         );
         theme.insert(
-            "blue",
+            "blue".to_string(),
             RgbJson {
                 red: 0,
                 green: 0,
@@ -41,7 +53,7 @@ lazy_static! {
             },
         );
         theme.insert(
-            "yellow",
+            "yellow".to_string(),
             RgbJson {
                 red: 255,
                 green: 255,
@@ -49,7 +61,7 @@ lazy_static! {
             },
         );
         theme.insert(
-            "magenta",
+            "magenta".to_string(),
             RgbJson {
                 red: 255,
                 green: 0,
@@ -57,7 +69,7 @@ lazy_static! {
             },
         );
         theme.insert(
-            "cyan",
+            "cyan".to_string(),
             RgbJson {
                 red: 0,
                 green: 255,
@@ -65,14 +77,21 @@ lazy_static! {
             },
         );
         theme.insert(
-            "white",
+            "white".to_string(),
             RgbJson {
                 red: 255,
                 green: 255,
                 blue: 255,
             },
         );
-
+        theme.insert(
+            "orange".to_string(),
+            RgbJson {
+                red: 255,
+                green: 165,
+                blue: 0,
+            },
+        );
         theme
     };
 }
