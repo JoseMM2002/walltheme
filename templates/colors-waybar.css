@@ -1,0 +1,21 @@
+@define-color foreground #{{white_hex}};
+@define-color background #{{black_bright_hex}};
+@define-color cursor #{{white_hex}};
+
+@define-color color0 #{{black_hex}};
+@define-color color1 #{{red_hex}};
+@define-color color2 #{{green_hex}};
+@define-color color3 #{{yellow_hex}};
+@define-color color4 #{{blue_hex}};
+@define-color color5 #{{magenta_hex}};
+@define-color color6 #{{cyan_hex}};
+@define-color color7 #{{white_hex}};
+@define-color color8 #{{black_bright_hex}};
+@define-color color9 #{{red_bright_hex}};
+@define-color color10 #{{green_bright_hex}};
+@define-color color11 #{{yellow_bright_hex}};
+@define-color color12 #{{blue_bright_hex}};
+@define-color color13 #{{magenta_bright_hex}};
+@define-color color14 #{{cyan_bright_hex}};
+@define-color color15 #{{white_bright_hex}};
+
