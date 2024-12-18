@@ -111,12 +111,12 @@ bright_min = 20
 
 ### Available Options
 
-- `mix_factor`: Mix factor for blending colors.
+- `mix_factor`: Mix factor for colors not found in the palette.
 - `distance_threshold`: Threshold for color distance filtering.
 - `palette_quality`: Quality of the palette extraction.
-- `palette_max_colors`: Maximum number of colors to extract.
-- `brighter_factor`: Factor to adjust color brightness.
-- `bright_min`: Minimum brightness threshold.
+- `palette_max_colors`: A number of colors in the output palette. Actual colors count can be lower depending on the image.
+- `brighter_factor`: Factor to adjust bright colors.
+- `bright_min`: Minimum brightness to consider a color bright.
 
 You can set these options to suit your preferences and workflow.
 
