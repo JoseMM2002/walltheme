@@ -125,13 +125,14 @@ You can customize Walltheme by creating or modifying a `config` file located at 
 ### Example Configuration
 
 ```toml
-[ConfigOpts]
+[general]
 mix_factor = 0.7
 distance_threshold = 0.5
 palette_quality = 16
 palette_max_colors = 8
 brighter_factor = 0.8
 bright_min = 20
+stdout_template = "colors.sh"
 ```
 
 ### Available Options
