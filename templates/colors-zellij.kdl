@@ -1,7 +1,7 @@
 themes {
     default {
         fg "#{{white_hex}}"
-        bg "#{{black_bright_hex}}"
+        bg "#{{black_hex}}"
         black "#{{black_hex}}"
         red "#{{red_hex}}"
         green "#{{green_hex}}"
