@@ -110,7 +110,6 @@ impl HelperDef for MissingHelper {
     ) -> handlebars::HelperResult {
         let params: String = h.params().iter().fold(String::new(), |acc, param| {
             let param = param.render();
-            println!("{}", param);
             format!("{} {}", acc, param)
         });
 
