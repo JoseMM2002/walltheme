@@ -67,7 +67,7 @@
           "type": "executiontime"
         },
         {
-          "foreground": "#{{blue_hex}}",
+          "foreground": "#{{blue_bright_hex}}",
           "properties": {
             "time_format": "15:04:05"
           },
