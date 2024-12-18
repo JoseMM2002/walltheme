@@ -1,4 +1,4 @@
-# Wallthemes
+# Walltheme
 
 Wallthemes is a terminal theme generator implemented in Rust. It extracts colors from an image and applies them to predefined templates to generate themes for terminal emulators, text editors, and other applications. The tool supports all standard colors (black, red, white, etc.), and includes an extra orange color specifically for **Zellij**.
 
