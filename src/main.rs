@@ -10,7 +10,7 @@ use walkdir::WalkDir;
 use walltheme::constants::{
     CACHE_PATH, DEFAULT_CONFIG_PATH, DEFAULT_TEMPLATES_PATH, OBJECTIVE_THEME,
 };
-use walltheme::{distance, gen_color_mix, get_configs, RgbJson, Theme};
+use walltheme::{distance, gen_color_mix, get_configs, MissingHelper, RgbJson, Theme};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -117,7 +117,9 @@ fn main() {
         let template_content = fs::read_to_string(input_path).expect("Could not read template");
         let data = json!(template_theme);
 
-        let reg = Handlebars::new();
+        let mut reg = Handlebars::new();
+        reg.register_helper("keep", Box::new(MissingHelper));
+
         let rendered = reg
             .render_template(template_content.as_str(), &data)
             .expect("Could not render template");

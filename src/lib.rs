@@ -1,5 +1,6 @@
 use constants::{DEFAULT_CONFIG, DEFAULT_CONFIG_PATH};
 use dirs::home_dir;
+use handlebars::HelperDef;
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, fs};
 
@@ -92,5 +93,28 @@ pub fn get_configs() -> Config {
             .brighter_factor
             .unwrap_or(DEFAULT_CONFIG.brighter_factor),
         bright_min: user_config.bright_min.unwrap_or(DEFAULT_CONFIG.bright_min),
+    }
+}
+
+#[derive(Clone, Copy)]
+pub struct MissingHelper;
+
+impl HelperDef for MissingHelper {
+    fn call<'reg: 'rc, 'rc>(
+        &self,
+        h: &handlebars::Helper<'rc>,
+        _r: &'reg handlebars::Handlebars<'reg>,
+        _ctx: &'rc handlebars::Context,
+        _rc: &mut handlebars::RenderContext<'reg, 'rc>,
+        out: &mut dyn handlebars::Output,
+    ) -> handlebars::HelperResult {
+        let params: String = h.params().iter().fold(String::new(), |acc, param| {
+            let param = param.render();
+            println!("{}", param);
+            format!("{} {}", acc, param)
+        });
+
+        out.write(&format!("{{{{ {} }}}}", params))?;
+        Ok(())
     }
 }
