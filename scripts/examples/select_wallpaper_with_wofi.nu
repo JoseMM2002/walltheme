@@ -24,8 +24,11 @@ let wallpaper_path = $image_dir | path join $selected_image
 swww img $wallpaper_path
 walltheme $wallpaper_path
 
+sh "$($cache.walltheme)/colors.sh" 
+
 cp $"($cache.walltheme)/colors-hypr.conf" $"($config.hyprland)/themes/walltheme.conf"
 cp $"($cache.walltheme)/colors-zellij.kdl" $"($config.zellij)/themes/walltheme.kdl"
+cp $"($cache.walltheme)/colors-oh-my-posh.json" $"($cache.oh-my-posh)/themes/walltheme.omp.json"
 
 try { 
     sh restart_waybar.sh 
@@ -33,4 +36,3 @@ try {
 try {
     pkill -USR1 -f /usr/bin/kitty
 }
-
