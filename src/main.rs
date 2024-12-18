@@ -124,7 +124,17 @@ fn main() {
             .render_template(template_content.as_str(), &data)
             .expect("Could not render template");
 
-        fs::write(output_path, rendered).expect("Could not write output");
+        fs::write(output_path, rendered.clone()).expect("Could not write output");
+
+        if config.stdout_template.is_some()
+            && input_path.ends_with(config.stdout_template.as_ref().unwrap())
+        {
+            println!("{}", rendered);
+        }
+    }
+
+    if config.stdout_template.is_some() {
+        return;
     }
 
     let mut keys: Vec<String> = theme.keys().cloned().collect();

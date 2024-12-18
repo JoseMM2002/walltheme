@@ -24,7 +24,7 @@ impl RgbJson {
     }
 }
 
-#[derive(Serialize, Deserialize, Clone, Copy, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct ConfigOpts {
     pub mix_factor: Option<f64>,
     pub distance_threshold: Option<f64>,
@@ -32,6 +32,12 @@ pub struct ConfigOpts {
     pub palette_max_colors: Option<u8>,
     pub brighter_factor: Option<f64>,
     pub bright_min: Option<u8>,
+    pub stdout_template: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct TomlConfig {
+    pub general: Option<ConfigOpts>,
 }
 
 pub struct Config {
@@ -41,6 +47,7 @@ pub struct Config {
     pub palette_max_colors: u8,
     pub brighter_factor: f64,
     pub bright_min: u8,
+    pub stdout_template: Option<String>,
 }
 
 pub fn distance(color1: RgbJson, color2: RgbJson) -> f64 {
@@ -72,7 +79,13 @@ pub fn get_configs() -> Config {
     }
 
     let config_content = fs::read_to_string(config_path).expect("Could not read config file");
-    let user_config: ConfigOpts = toml::from_str(&config_content).expect("Could not parse config");
+    let toml_config: TomlConfig = toml::from_str(&config_content).expect("Could not parse config");
+
+    if toml_config.general.is_none() {
+        return DEFAULT_CONFIG;
+    }
+
+    let user_config = toml_config.general.unwrap();
 
     if user_config.brighter_factor.is_some() && user_config.brighter_factor.unwrap() < 1.0 {
         panic!("Brighter factor must be greater than 1.0");
@@ -93,6 +106,7 @@ pub fn get_configs() -> Config {
             .brighter_factor
             .unwrap_or(DEFAULT_CONFIG.brighter_factor),
         bright_min: user_config.bright_min.unwrap_or(DEFAULT_CONFIG.bright_min),
+        stdout_template: user_config.stdout_template,
     }
 }
 

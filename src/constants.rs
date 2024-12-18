@@ -11,6 +11,7 @@ pub const DEFAULT_CONFIG: Config = Config {
     palette_max_colors: 255,
     brighter_factor: 1.4,
     bright_min: 20,
+    stdout_template: None,
 };
 
 pub const DEFAULT_CONFIG_PATH: &str = ".config/walltheme/";
