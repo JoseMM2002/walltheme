@@ -9,7 +9,7 @@
         {
           "foreground": "#{{blue_bright_hex}}",
           "style": "plain",
-          "template": "\udb82\udcc7 {{keep .UserName}}'s ",
+          "template": "\udb82\udcc7 {{keep ".UserName"}}'s ",
           "type": "session"
         },
         {
@@ -18,7 +18,7 @@
             "style": "folder"
           },
           "style": "plain",
-          "template": "{{keep .Path}}/ ",
+          "template": "{{keep ".Path"}}/ ",
           "type": "path"
         },
         {
@@ -27,7 +27,7 @@
             "fetch_status": true
           },
           "style": "plain",
-          "template": "<#{{white_hex}}>on</> {{keep .HEAD}}{{keep if .BranchStatus }} {{keep .BranchStatus}}{{keep end }}{{keep if .Working.Changed }} \uf044 {{keep .Working.String}}{{keep end }}{{keep if and (.Working.Changed) (.Staging.Changed) }} |{{keep end }}{{keep if .Staging.Changed }} \uf046 {{keep .Staging.String}}{{keep end }} ",
+          "template": "<#{{white_hex}}>on</> {{keep ".HEAD"}}{{keep "if .BranchStatus "}} {{keep ".BranchStatus"}}{{keep "end "}}{{keep "if .Working.Changed "}} \uf044 {{keep ".Working.String"}}{{keep "end "}}{{keep "if and (.Working.Changed) (.Staging.Changed) "}} |{{keep "end "}}{{keep "if .Staging.Changed "}} \uf046 {{keep ".Staging.String"}}{{keep "end "}} ",
           "type": "git"
         }
       ],
@@ -40,13 +40,13 @@
         {
           "foreground" : "{{green_hex}}",
           "style": "plain",
-          "template": "\ue718 {{keep .Full}} ",
+          "template": "\ue718 {{keep ".Full"}} ",
           "type": "node"
         },
         {
           "foreground" : "{{orange_hex}}",
           "style": "plain",
-          "template": "\ue7a8 {{keep .Full}} ",
+          "template": "\ue7a8 {{keep ".Full"}} ",
           "type": "rust"
         },
         {
@@ -54,7 +54,7 @@
             "always_enabled": true
           },
           "style": "plain",
-          "template": " {{keep if gt .Code 0 }}<#{{red_hex}}>\uf00d</>{{keep else }}<#{{green_bright_hex}}>\uf42e</>{{keep end }} ",
+          "template": " {{keep "if gt .Code 0 "}}<#{{red_hex}}>\uf00d</>{{keep "else "}}<#{{green_bright_hex}}>\uf42e</>{{keep "end "}} ",
           "type": "status"
         },
         {
@@ -63,16 +63,16 @@
             "threshold": 10
           },
           "style": "plain",
-          "template": "took \uf252 {{keep .FormattedMs}} ",
+          "template": "took \uf252 {{keep ".FormattedMs"}} ",
           "type": "executiontime"
         },
         {
-          "foreground": "#{{blue_bright_hex}}",
+          "foreground": "#{{blue_hex}}",
           "properties": {
             "time_format": "15:04:05"
           },
           "style": "plain",
-          "template": " {{keep .CurrentDate | date .Format}} \uf017 ",
+          "template": " {{keep ".CurrentDate | date .Format"}} \uf017 ",
           "type": "time"
         }
       ],
@@ -80,4 +80,5 @@
     }
   ]
 }
+
 
