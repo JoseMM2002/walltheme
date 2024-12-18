@@ -6,6 +6,31 @@ Walltheme comes with several templates and example scripts to facilitate customi
 
 ---
 
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Build from Source](#build-from-source)
+- [Usage](#usage)
+  - [Basic Command](#basic-command)
+  - [Example](#example)
+- [Templates](#templates)
+  - [Example Template](#example-template)
+  - [Provided Templates](#provided-templates)
+- [Configuration Options](#configuration-options)
+  - [Example Configuration](#example-configuration)
+  - [Available Options](#available-options)
+- [Examples](#examples)
+- [NeoVim Integration](#neovim-integration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+- [Screenshots](#screenshots)
+  - [Generated Themes in Action](#generated-themes-in-action)
+
+---
+
 ## Features
 
 - **Extract Colors from an Image**: Automatically extracts primary colors like black, red, white, and others from a provided image.
@@ -28,7 +53,8 @@ Walltheme comes with several templates and example scripts to facilitate customi
 # Clone the repository
 mkdir -p ~/.cache/walltheme/ && mkdir -p ~/.config/walltheme/templates
 git clone https://github.com/JoseMM2002/walltheme.nvim.git
-cd walltheme# Build the project
+cd walltheme
+# Build the project
 cargo install --path .
 ```
 
@@ -110,12 +136,12 @@ bright_min = 20
 
 ### Available Options
 
-- `mix_factor`: Mix factor for colors not found in the palette.
+- `mix_factor`: Mix factor for blending colors.
 - `distance_threshold`: Threshold for color distance filtering.
 - `palette_quality`: Quality of the palette extraction.
-- `palette_max_colors`: A number of colors in the output palette. Actual colors count can be lower depending on the image.
-- `brighter_factor`: Factor to adjust bright colors.
-- `bright_min`: Minimum brightness to consider a color bright.
+- `palette_max_colors`: Maximum number of colors to extract.
+- `brighter_factor`: Factor to adjust color brightness.
+- `bright_min`: Minimum brightness threshold.
 
 You can set these options to suit your preferences and workflow.
 
@@ -156,6 +182,8 @@ Special thanks to tools like [Pywal](https://github.com/dylanaraps/pywal) and in
 ---
 
 ## Screenshots
+
+### Generated Themes in Action
 
 ![Screenshot1](pictures/Screenshot1.jpeg)
 
