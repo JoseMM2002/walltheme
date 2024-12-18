@@ -143,6 +143,7 @@ stdout_template = "colors.sh"
 - `palette_max_colors`: Maximum number of colors to extract.
 - `brighter_factor`: Factor to adjust color brightness.
 - `bright_min`: Minimum brightness threshold.
+- `stdout_template`: Template for standard output.
 
 You can set these options to suit your preferences and workflow.
 
