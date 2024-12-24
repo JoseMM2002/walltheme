@@ -15,12 +15,30 @@ pub struct RgbJson {
     pub blue: u8,
 }
 
+pub struct HexOpts {
+    pub opacity: Option<u8>,
+}
 impl RgbJson {
-    pub fn to_hex(&self) -> String {
-        format!("{:02x}{:02x}{:02x}", self.red, self.green, self.blue)
+    pub fn to_hex(&self, opts: HexOpts) -> String {
+        format!(
+            "{:02x}{:02x}{:02x}{}",
+            self.red,
+            self.green,
+            self.blue,
+            match opts.opacity {
+                Some(opacity) => format!("{:02x}", opacity),
+                None => "".to_string(),
+            }
+        )
     }
     pub fn to_string(&self) -> String {
         format!("({}, {}, {})", self.red, self.green, self.blue)
+    }
+    pub fn to_rgba(&self, opacity: u8) -> String {
+        format!(
+            "rgba({}, {}, {}, {})",
+            self.red, self.green, self.blue, opacity
+        )
     }
 }
 
@@ -32,6 +50,7 @@ pub struct ConfigOpts {
     pub palette_max_colors: Option<u8>,
     pub brighter_factor: Option<f64>,
     pub bright_min: Option<u8>,
+    pub opacity_target: Option<u8>,
     pub stdout_template: Option<String>,
 }
 
@@ -47,6 +66,7 @@ pub struct Config {
     pub palette_max_colors: u8,
     pub brighter_factor: f64,
     pub bright_min: u8,
+    pub opacity_target: Option<u8>,
     pub stdout_template: Option<String>,
 }
 
@@ -107,6 +127,7 @@ pub fn get_configs() -> Config {
             .unwrap_or(DEFAULT_CONFIG.brighter_factor),
         bright_min: user_config.bright_min.unwrap_or(DEFAULT_CONFIG.bright_min),
         stdout_template: user_config.stdout_template,
+        opacity_target: user_config.opacity_target,
     }
 }
 

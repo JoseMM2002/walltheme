@@ -10,7 +10,7 @@ use walkdir::WalkDir;
 use walltheme::constants::{
     CACHE_PATH, DEFAULT_CONFIG_PATH, DEFAULT_TEMPLATES_PATH, OBJECTIVE_THEME,
 };
-use walltheme::{distance, gen_color_mix, get_configs, MissingHelper, RgbJson, Theme};
+use walltheme::{distance, gen_color_mix, get_configs, HexOpts, MissingHelper, RgbJson, Theme};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -90,8 +90,17 @@ fn main() {
     }
 
     for (name, color) in theme.iter() {
-        template_theme.insert(format!("{}_hex", name), color.to_hex());
+        template_theme.insert(
+            format!("{}_hex", name),
+            color.to_hex(HexOpts {
+                opacity: config.opacity_target,
+            }),
+        );
         template_theme.insert(format!("{}_rgb", name), color.to_string());
+        template_theme.insert(
+            format!("{}_rgba", name),
+            color.to_rgba(config.opacity_target.unwrap_or(255)),
+        );
     }
 
     let home = home_dir().expect("Could not find home directory");

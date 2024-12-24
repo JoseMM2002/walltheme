@@ -12,6 +12,7 @@ pub const DEFAULT_CONFIG: Config = Config {
     brighter_factor: 1.4,
     bright_min: 20,
     stdout_template: None,
+    opacity_target: None,
 };
 
 pub const DEFAULT_CONFIG_PATH: &str = ".config/walltheme/";

@@ -95,6 +95,10 @@ rgb{{black_rgb}}
 rgb{{red_rgb}}
 rgb{{green_rgb}}
 rgb{{blue_rgb}}
+rgba{{black_rgba}}
+rgba{{red_rgba}}
+rgba{{green_rgba}}
+rgba{{blue_rgba}}
 ```
 
 if the template also needs braces for some configs as oh-my-posh, you can use the following syntax:
@@ -126,12 +130,13 @@ You can customize Walltheme by creating or modifying a `config` file located at 
 
 ```toml
 [general]
-mix_factor = 0.7
-distance_threshold = 0.5
-palette_quality = 16
-palette_max_colors = 8
-brighter_factor = 0.8
-bright_min = 20
+mix_factor = 0.7 # from 0 to 1
+distance_threshold = 0.5 # from 0 to 1
+palette_quality = 16 # from 1 to 255
+palette_max_colors = 8 # from 1 to 255
+brighter_factor = 0.8 # from 0 to 1
+bright_min = 20 # from 0 to 255
+opacity_target = 50 # from 0 to 255
 stdout_template = "colors.sh"
 ```
 
@@ -144,6 +149,7 @@ stdout_template = "colors.sh"
 - `brighter_factor`: Factor to adjust color brightness.
 - `bright_min`: Minimum brightness threshold.
 - `stdout_template`: Template for standard output.
+- `opacity_target`: Target opacity for colors.
 
 You can set these options to suit your preferences and workflow.
 
