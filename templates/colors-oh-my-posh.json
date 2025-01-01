@@ -64,7 +64,7 @@
         {
           "foreground" : "#{{blue_bright_hex}}",
           "style": "plain",
-          "template": "  {{ .Full }} ",
+          "template": "  {{keep ".Full"}} ",
           "type": "go"
         },
         {
