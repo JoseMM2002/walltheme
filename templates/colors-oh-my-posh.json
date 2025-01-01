@@ -38,16 +38,34 @@
       "alignment": "right",
       "segments": [
         {
-          "foreground" : "{{green_hex}}",
+          "foreground" : "#{{green_hex}}",
           "style": "plain",
           "template": "\ue718 {{keep ".Full"}} ",
           "type": "node"
         },
         {
-          "foreground" : "{{orange_hex}}",
+          "foreground" : "#{{orange_hex}}",
           "style": "plain",
           "template": "\ue7a8 {{keep ".Full"}} ",
           "type": "rust"
+        },
+        {
+          "foreground" : "#{{yellow_hex}}",
+          "style": "plain",
+          "template": "\ue6a9 {{keep ".Full"}} ",
+          "type": "zig"
+        },
+        {
+          "foreground" : "#{{blue_hex}}",
+          "style": "plain",
+          "template": "\ue73c {{keep ".Full"}} ",
+          "type": "python"
+        },
+        {
+          "foreground" : "#{{blue_bright_hex}}",
+          "style": "plain",
+          "template": "  {{ .Full }} ",
+          "type": "go"
         },
         {
           "properties": {
