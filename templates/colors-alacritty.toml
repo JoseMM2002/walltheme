@@ -3,7 +3,7 @@ foreground = "#{{white_hex}}"
 background = "#{{black_hex}}"
 
 [colors]
-cursor = "#{{white_hex}}"
+cursor = { text = "#{{black_hex}}", cursor = "#{{white_hex}}" }
 
 [colors.normal]
 black = "#{{black_hex}}"
