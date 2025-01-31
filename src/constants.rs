@@ -2,16 +2,14 @@ use std::collections::HashMap;
 
 use lazy_static::lazy_static;
 
-use crate::{Config, RgbJson, Theme};
+use crate::config::{ColorsConfig, GeneralConfig};
+use crate::theme::{RgbJson, Theme};
 
-pub const DEFAULT_CONFIG: Config = Config {
+pub const DEFAULT_COLORS_CONFIG: ColorsConfig = ColorsConfig {
     mix_factor: 0.1,
     distance_threshold: 50.0,
-    palette_quality: 1,
-    palette_max_colors: 255,
     brighter_factor: 1.4,
     bright_min: 20,
-    stdout_template: None,
     opacity_target: None,
 };
 
@@ -20,6 +18,12 @@ pub const DEFAULT_TEMPLATES_PATH: &str = ".config/walltheme/templates/";
 pub const CACHE_PATH: &str = ".cache/walltheme/";
 
 lazy_static! {
+    pub static ref DEFAULT_CONFIG: GeneralConfig = GeneralConfig {
+        palette_quality: 1,
+        palette_max_colors: 255,
+        stdout_template: None,
+        colors: HashMap::new(),
+    };
     pub static ref OBJECTIVE_THEME: Theme = {
         let mut theme: Theme = HashMap::new();
         theme.insert(

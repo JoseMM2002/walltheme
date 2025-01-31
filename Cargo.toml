@@ -14,8 +14,11 @@ serde_json = "1.0.133"
 termion = "4.0.3"
 toml = "0.8.19"
 walkdir = "2.5.0"
+walltheme-config = { path = "walltheme-config" }
 
 [build-dependencies]
 toml = "0.8.19"
 serde = "1.0.216"
 serde_json = "1.0.133"
+schemars = "0.8.21"
+walltheme-config = { path = "walltheme-config" }

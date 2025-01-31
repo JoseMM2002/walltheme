@@ -10,7 +10,10 @@ use walkdir::WalkDir;
 use walltheme::constants::{
     CACHE_PATH, DEFAULT_CONFIG_PATH, DEFAULT_TEMPLATES_PATH, OBJECTIVE_THEME,
 };
-use walltheme::{distance, gen_color_mix, get_configs, HexOpts, MissingHelper, RgbJson, Theme};
+use walltheme::helper::MissingHelper;
+
+use walltheme::config::{get_color_config, get_configs, ColorsConfig};
+use walltheme::theme::{distance, gen_color_mix, HexOpts, RgbJson, Theme};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -22,17 +25,17 @@ fn main() {
 
     let filename = &args[1];
 
-    let image = image::open(&Path::new(filename)).unwrap();
+    let image = image::open(Path::new(filename)).unwrap();
     let rgb_image = image.to_rgb8();
     let pixels = rgb_image.as_raw();
 
-    let config = get_configs();
+    let (general_config, colors_config) = get_configs();
 
     let palette = get_palette(
         pixels,
         ColorFormat::Rgb,
-        config.palette_quality,
-        config.palette_max_colors,
+        general_config.palette_quality,
+        general_config.palette_max_colors,
     );
 
     if palette.is_err() {
@@ -43,13 +46,31 @@ fn main() {
     let palette = palette.unwrap();
     let mut theme: Theme = HashMap::new();
 
+    let mut composed_theme: Theme = OBJECTIVE_THEME.clone();
+    composed_theme.extend(
+        general_config
+            .colors
+            .iter()
+            .map(|(name, color)| {
+                (
+                    name.to_string(),
+                    RgbJson {
+                        red: color.rgb.0,
+                        green: color.rgb.1,
+                        blue: color.rgb.2,
+                    },
+                )
+            })
+            .collect::<Theme>(),
+    );
+
     for current_color in palette {
         let current_color = RgbJson {
             red: current_color.r,
             green: current_color.g,
             blue: current_color.b,
         };
-        for (name, objective_color) in OBJECTIVE_THEME.iter() {
+        for (name, objective_color) in composed_theme.iter() {
             let theme_color = theme.get(name);
 
             if theme_color.is_none()
@@ -63,26 +84,28 @@ fn main() {
 
     let mut template_theme: HashMap<String, String> = HashMap::new();
 
-    for (name, objective_color) in OBJECTIVE_THEME.iter() {
-        let theme_color = theme.get(name).unwrap().clone();
+    for (name, objective_color) in composed_theme.iter() {
+        let theme_color = *theme.get(name).unwrap();
         let theme_distance = distance(theme_color, *objective_color);
 
-        let color = if theme_distance < config.distance_threshold {
+        let color_config: ColorsConfig = get_color_config(name, &general_config, &colors_config);
+
+        let color = if theme_distance < color_config.distance_threshold {
             theme_color
         } else {
-            gen_color_mix(theme_color, *objective_color, config.mix_factor)
+            gen_color_mix(theme_color, *objective_color, color_config.mix_factor)
         };
 
         let bright_color = RgbJson {
-            red: (color.red as f64 * config.brighter_factor)
+            red: (color.red as f64 * color_config.brighter_factor)
                 .min(255.0)
-                .max(config.bright_min as f64) as u8,
-            green: (color.green as f64 * config.brighter_factor)
+                .max(color_config.bright_min as f64) as u8,
+            green: (color.green as f64 * colors_config.brighter_factor)
                 .min(255.0)
-                .max(config.bright_min as f64) as u8,
-            blue: (color.blue as f64 * config.brighter_factor)
+                .max(colors_config.bright_min as f64) as u8,
+            blue: (color.blue as f64 * colors_config.brighter_factor)
                 .min(255.0)
-                .max(config.bright_min as f64) as u8,
+                .max(colors_config.bright_min as f64) as u8,
         };
 
         theme.insert(format!("{}_bright", name), bright_color);
@@ -90,16 +113,17 @@ fn main() {
     }
 
     for (name, color) in theme.iter() {
+        let color_config: ColorsConfig = get_color_config(name, &general_config, &colors_config);
         template_theme.insert(
             format!("{}_hex", name),
             color.to_hex(HexOpts {
-                opacity: config.opacity_target,
+                opacity: color_config.opacity_target,
             }),
         );
         template_theme.insert(format!("{}_rgb", name), color.to_string());
         template_theme.insert(
             format!("{}_rgba", name),
-            color.to_rgba(config.opacity_target.unwrap_or(255)),
+            color.to_rgba(colors_config.opacity_target.unwrap_or(255)),
         );
     }
 
@@ -135,14 +159,14 @@ fn main() {
 
         fs::write(output_path, rendered.clone()).expect("Could not write output");
 
-        if config.stdout_template.is_some()
-            && input_path.ends_with(config.stdout_template.as_ref().unwrap())
-        {
-            println!("{}", rendered);
+        if let Some(stdout_template) = &general_config.stdout_template {
+            if input_path.ends_with(stdout_template) {
+                println!("{}", rendered);
+            }
         }
     }
 
-    if config.stdout_template.is_some() {
+    if general_config.stdout_template.is_some() {
         return;
     }
 
