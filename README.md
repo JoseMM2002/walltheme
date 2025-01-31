@@ -99,12 +99,15 @@ rgba{{black_rgba}}
 rgba{{red_rgba}}
 rgba{{green_rgba}}
 rgba{{blue_rgba}}
-```
 
-if the template also needs braces for some configs as oh-my-posh, you can use the following syntax:
 
-```plaintext
-{{keep "info to keep betwwen braces"}}
+# Custom colors
+{{orange_hex}}
+{{orange_rgb}}
+{{orange_rgba}}
+
+# Keep this info
+{{keep "info to keep"}} -> {{info to keep}}
 ```
 
 ### Provided Templates
@@ -138,6 +141,14 @@ brighter_factor = 0.8 # from 0 to 1
 bright_min = 20 # from 0 to 255
 opacity_target = 50 # from 0 to 255
 stdout_template = "colors.sh"
+
+[color.colorName]
+rgb = [0, 0, 0]
+mix_factor = 0.7
+distance_threshold = 0.5
+brighter_factor = 0.8
+bright_min = 20
+opacity_target = 50
 ```
 
 ### Available Options
@@ -149,6 +160,15 @@ stdout_template = "colors.sh"
 - `brighter_factor`: Factor to adjust color brightness.
 - `bright_min`: Minimum brightness threshold.
 - `stdout_template`: Template for standard output.
+- `opacity_target`: Target opacity for colors.
+
+You can also add new colors or modify existing ones by adding a section for each color.
+
+- `rgb`: RGB values for the color.
+- `mix_factor`: Mix factor for blending colors.
+- `distance_threshold`: Threshold for color distance filtering.
+- `brighter_factor`: Factor to adjust color brightness.
+- `bright_min`: Minimum brightness threshold.
 - `opacity_target`: Target opacity for colors.
 
 You can set these options to suit your preferences and workflow.
