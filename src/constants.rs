@@ -25,79 +25,79 @@ lazy_static! {
         colors: HashMap::new(),
     };
     pub static ref OBJECTIVE_THEME: Theme = {
-        let mut theme: Theme = HashMap::new();
-        theme.insert(
-            "black".to_string(),
-            RgbJson {
-                red: 0,
-                green: 0,
-                blue: 0,
-            },
-        );
-        theme.insert(
-            "red".to_string(),
-            RgbJson {
-                red: 255,
-                green: 0,
-                blue: 0,
-            },
-        );
-        theme.insert(
-            "green".to_string(),
-            RgbJson {
-                red: 0,
-                green: 255,
-                blue: 0,
-            },
-        );
-        theme.insert(
-            "blue".to_string(),
-            RgbJson {
-                red: 0,
-                green: 0,
-                blue: 255,
-            },
-        );
-        theme.insert(
-            "yellow".to_string(),
-            RgbJson {
-                red: 255,
-                green: 255,
-                blue: 0,
-            },
-        );
-        theme.insert(
-            "magenta".to_string(),
-            RgbJson {
-                red: 255,
-                green: 0,
-                blue: 255,
-            },
-        );
-        theme.insert(
-            "cyan".to_string(),
-            RgbJson {
-                red: 0,
-                green: 255,
-                blue: 255,
-            },
-        );
-        theme.insert(
-            "white".to_string(),
-            RgbJson {
-                red: 255,
-                green: 255,
-                blue: 255,
-            },
-        );
-        theme.insert(
-            "orange".to_string(),
-            RgbJson {
-                red: 255,
-                green: 165,
-                blue: 0,
-            },
-        );
-        theme
+        HashMap::from([
+            (
+                "black".to_string(),
+                RgbJson {
+                    red: 0,
+                    green: 0,
+                    blue: 0,
+                },
+            ),
+            (
+                "red".to_string(),
+                RgbJson {
+                    red: 255,
+                    green: 0,
+                    blue: 0,
+                },
+            ),
+            (
+                "green".to_string(),
+                RgbJson {
+                    red: 0,
+                    green: 255,
+                    blue: 0,
+                },
+            ),
+            (
+                "blue".to_string(),
+                RgbJson {
+                    red: 0,
+                    green: 0,
+                    blue: 255,
+                },
+            ),
+            (
+                "yellow".to_string(),
+                RgbJson {
+                    red: 255,
+                    green: 255,
+                    blue: 0,
+                },
+            ),
+            (
+                "magenta".to_string(),
+                RgbJson {
+                    red: 255,
+                    green: 0,
+                    blue: 255,
+                },
+            ),
+            (
+                "cyan".to_string(),
+                RgbJson {
+                    red: 0,
+                    green: 255,
+                    blue: 255,
+                },
+            ),
+            (
+                "white".to_string(),
+                RgbJson {
+                    red: 255,
+                    green: 255,
+                    blue: 255,
+                },
+            ),
+            (
+                "orange".to_string(),
+                RgbJson {
+                    red: 255,
+                    green: 165,
+                    blue: 0,
+                },
+            ),
+        ])
     };
 }
