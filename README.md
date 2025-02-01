@@ -127,7 +127,7 @@ Templates are located in the `templates/` directory. To use them, copy the desir
 
 ## Configuration Options
 
-You can customize Walltheme by creating or modifying a `config` file located at `~/.config/walltheme/config`. This file allows you to fine-tune the behavior of the theme generation, including palette settings and thresholds.
+You can customize Walltheme by creating or modifying a `config` file located at `~/.config/walltheme/config.toml`. This file allows you to fine-tune the behavior of the theme generation, including palette settings and thresholds.
 
 ### Example Configuration
 
@@ -143,7 +143,8 @@ opacity_target = 50 # from 0 to 255
 stdout_template = "colors.sh"
 
 [color.colorName]
-rgb = [0, 0, 0]
+rgb = [0, 0, 0] # RGB values or
+hex = "#000000" # Hex value
 mix_factor = 0.7
 distance_threshold = 0.5
 brighter_factor = 0.8
@@ -165,6 +166,7 @@ opacity_target = 50
 You can also add new colors or modify existing ones by adding a section for each color.
 
 - `rgb`: RGB values for the color.
+- `hex`: Hex value for the color. (if `rgb` is not provided)
 - `mix_factor`: Mix factor for blending colors.
 - `distance_threshold`: Threshold for color distance filtering.
 - `brighter_factor`: Factor to adjust color brightness.

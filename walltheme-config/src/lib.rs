@@ -22,7 +22,8 @@ pub struct TomlColorsConfig {
     pub brighter_factor: Option<f64>,
     pub bright_min: Option<u8>,
     pub opacity_target: Option<u8>,
-    pub rgb: (u8, u8, u8),
+    pub rgb: Option<(u8, u8, u8)>,
+    pub hex: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, JsonSchema)]

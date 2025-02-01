@@ -1,7 +1,7 @@
 use std::{collections::HashMap, fs};
 
 use dirs::home_dir;
-use walltheme_config::{TomlColorsConfig, TomlConfig};
+use walltheme_config::{ConfigOpts, TomlColorsConfig, TomlConfig};
 
 use crate::constants::{DEFAULT_COLORS_CONFIG, DEFAULT_CONFIG, DEFAULT_CONFIG_PATH};
 
@@ -40,9 +40,16 @@ pub fn get_configs() -> (GeneralConfig, ColorsConfig) {
             }
             config
         }
-        None => {
-            return (DEFAULT_CONFIG.clone(), DEFAULT_COLORS_CONFIG);
-        }
+        None => ConfigOpts {
+            mix_factor: None,
+            distance_threshold: None,
+            palette_quality: None,
+            palette_max_colors: None,
+            brighter_factor: None,
+            bright_min: None,
+            opacity_target: None,
+            stdout_template: None,
+        },
     };
 
     (
@@ -80,6 +87,9 @@ pub fn get_color_config(
     colors_config: &ColorsConfig,
 ) -> ColorsConfig {
     if let Some(color_config) = general_config.colors.get(name) {
+        if color_config.brighter_factor.is_some() && color_config.brighter_factor.unwrap() < 1.0 {
+            panic!("Brighter factor must be greater than 1.0");
+        }
         ColorsConfig {
             distance_threshold: color_config
                 .distance_threshold

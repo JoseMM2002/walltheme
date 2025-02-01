@@ -61,3 +61,13 @@ pub fn gen_color_mix(color1: RgbJson, color2: RgbJson, factor: f64) -> RgbJson {
         blue: interpolate(color1.blue, color2.blue, factor),
     }
 }
+
+pub fn hex_to_rgb(hex: &str) -> RgbJson {
+    let error_message = format!("Invalid hex color: {}", hex);
+    let hex = hex.trim_start_matches('#');
+    let red = u8::from_str_radix(&hex[0..2], 16).expect(&error_message);
+    let green = u8::from_str_radix(&hex[2..4], 16).expect(&error_message);
+    let blue = u8::from_str_radix(&hex[4..6], 16).expect(&error_message);
+
+    RgbJson { red, green, blue }
+}

@@ -13,7 +13,7 @@ use walltheme::constants::{
 use walltheme::helper::MissingHelper;
 
 use walltheme::config::{get_color_config, get_configs, ColorsConfig};
-use walltheme::theme::{distance, gen_color_mix, HexOpts, RgbJson, Theme};
+use walltheme::theme::{distance, gen_color_mix, hex_to_rgb, HexOpts, RgbJson, Theme};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -52,14 +52,17 @@ fn main() {
             .colors
             .iter()
             .map(|(name, color)| {
-                (
-                    name.to_string(),
-                    RgbJson {
-                        red: color.rgb.0,
-                        green: color.rgb.1,
-                        blue: color.rgb.2,
+                let color = match color.rgb {
+                    Some(rgb) => RgbJson {
+                        red: rgb.0,
+                        green: rgb.1,
+                        blue: rgb.2,
                     },
-                )
+                    None => hex_to_rgb(color.hex.as_ref().expect(
+                        format!("Color {} does not have a hex or rgb value", name).as_str(),
+                    )),
+                };
+                (name.to_string(), color)
             })
             .collect::<Theme>(),
     );
