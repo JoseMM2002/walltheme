@@ -102,9 +102,9 @@ rgba{{blue_rgba}}
 
 
 # Custom colors
-{{orange_hex}}
-{{orange_rgb}}
-{{orange_rgba}}
+{{colorName_hex}}
+{{colorName_rgb}}
+{{colorName_rgba}}
 
 # Keep this info
 {{keep "info to keep"}} -> {{info to keep}}
@@ -143,13 +143,33 @@ opacity_target = 50 # from 0 to 255
 stdout_template = "colors.sh"
 
 [color.colorName]
+# Color Value
 rgb = [0, 0, 0] # RGB values or
-hex = "#000000" # Hex value
+hex = "#000000" # Hex value or
+# Index in the palette from the extracted colors (related to the palette_max_colors)
+pallete_index = 0
+
+# Color Options
 mix_factor = 0.7
 distance_threshold = 0.5
 brighter_factor = 0.8
 bright_min = 20
 opacity_target = 50
+
+
+#Examples
+
+[color.primary]
+palette_index = 0
+[color.secondary]
+palette_index = 1
+[color.tertiary]
+palette_index = 2
+
+[color.orange]
+rgb = [255, 165, 0]
+#or
+hex = "#ffa500"
 ```
 
 ### Available Options
@@ -167,6 +187,7 @@ You can also add new colors or modify existing ones by adding a section for each
 
 - `rgb`: RGB values for the color.
 - `hex`: Hex value for the color. (if `rgb` is not provided)
+- `palette_index`: Index in the palette from the extracted colors.
 - `mix_factor`: Mix factor for blending colors.
 - `distance_threshold`: Threshold for color distance filtering.
 - `brighter_factor`: Factor to adjust color brightness.
