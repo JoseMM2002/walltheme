@@ -126,7 +126,7 @@ fn main() {
         template_theme.insert(format!("{}_rgb", name), color.to_string());
         template_theme.insert(
             format!("{}_rgba", name),
-            color.to_rgba(colors_config.opacity_target.unwrap_or(255)),
+            color.to_rgba(color_config.opacity_target.unwrap_or(100)),
         );
     }
 

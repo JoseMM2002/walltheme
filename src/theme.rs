@@ -30,8 +30,11 @@ impl RgbJson {
     }
     pub fn to_rgba(&self, opacity: u8) -> String {
         format!(
-            "rgba({}, {}, {}, {})",
-            self.red, self.green, self.blue, opacity
+            "({},{},{},{})",
+            self.red,
+            self.green,
+            self.blue,
+            (opacity as f64 / 100.0)
         )
     }
 }
