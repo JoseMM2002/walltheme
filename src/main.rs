@@ -52,15 +52,25 @@ fn main() {
             .colors
             .iter()
             .map(|(name, color)| {
-                let color = match color.rgb {
-                    Some(rgb) => RgbJson {
+                let color = if let Some(rgb) = color.rgb {
+                    RgbJson {
                         red: rgb.0,
                         green: rgb.1,
                         blue: rgb.2,
-                    },
-                    None => hex_to_rgb(color.hex.as_ref().expect(
-                        format!("Color {} does not have a hex or rgb value", name).as_str(),
-                    )),
+                    }
+                } else if let Some(hex) = color.hex.clone() {
+                    hex_to_rgb(hex.as_str())
+                } else if let Some(pallet_idx) = color.palette_index {
+                    if pallet_idx as usize >= palette.len() {
+                        panic!("Palette index {} is out of bounds", pallet_idx);
+                    }
+                    RgbJson {
+                        red: palette[pallet_idx as usize].r,
+                        green: palette[pallet_idx as usize].g,
+                        blue: palette[pallet_idx as usize].b,
+                    }
+                } else {
+                    panic!("Color {} is missing rgb, hex or palette_index", name);
                 };
                 (name.to_string(), color)
             })
@@ -75,6 +85,13 @@ fn main() {
         };
         for (name, objective_color) in composed_theme.iter() {
             let theme_color = theme.get(name);
+
+            let general_color = general_config.colors.get(name);
+            if let Some(general_color) = general_color {
+                if general_color.palette_index.is_some() && theme_color.is_some() {
+                    continue;
+                }
+            }
 
             if theme_color.is_none()
                 || distance(current_color, *objective_color)
