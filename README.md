@@ -34,6 +34,7 @@ Walltheme comes with several templates and example scripts to facilitate customi
 ## Features
 
 - **Extract Colors from an Image**: Automatically extracts primary colors like black, red, white, and others from a provided image.
+- **Customizable Palette**: Allows you to define custom colors and adjust the palette quality.
 - **Zellij Support**: Includes an additional orange color for Zellij.
 - **Template-based Generation**: Uses customizable templates to generate configuration files for terminals, text editors, and more.
 - **Example Scripts**: Predefined scripts and templates for quick integration.
