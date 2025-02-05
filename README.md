@@ -185,9 +185,9 @@ hex = "#ffa500"
 
 You can also add new colors or modify existing ones by adding a section for each color.
 
-- `rgb`: RGB values for the color.
-- `hex`: Hex value for the color. (if `rgb` is not provided)
-- `palette_index`: Index in the palette from the extracted colors.
+- `rgb`: RGB values to define the color target.
+- `hex`: Hex value to define the color target.
+- `palette_index`: Index in the palette from the extracted colors (related to the `palette_max_colors`). Also defines the color target.
 - `mix_factor`: Mix factor for blending colors.
 - `distance_threshold`: Threshold for color distance filtering.
 - `brighter_factor`: Factor to adjust color brightness.
