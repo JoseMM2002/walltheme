@@ -43,7 +43,7 @@ fn main() {
         std::process::exit(1);
     }
 
-    let palette = palette.unwrap();
+    let mut palette = palette.unwrap();
     let mut theme: Theme = HashMap::new();
 
     let mut composed_theme: Theme = OBJECTIVE_THEME.clone();
@@ -102,7 +102,8 @@ fn main() {
         }
     }
 
-    let mut template_theme: HashMap<String, String> = HashMap::new();
+    let mut template_theme: HashMap<String, String> =
+        HashMap::from([("image_path".to_string(), filename.to_string())]);
 
     for (name, objective_color) in composed_theme.iter() {
         let theme_color = *theme.get(name).unwrap();

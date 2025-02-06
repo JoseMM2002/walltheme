@@ -109,6 +109,9 @@ rgba{{blue_rgba}}
 
 # Keep this info
 {{keep "info to keep"}} -> {{info to keep}}
+
+# Image path
+{{image_path}}
 ```
 
 ### Provided Templates
