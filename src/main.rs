@@ -43,7 +43,7 @@ fn main() {
         std::process::exit(1);
     }
 
-    let mut palette = palette.unwrap();
+    let palette = palette.unwrap();
     let mut theme: Theme = HashMap::new();
 
     let mut composed_theme: Theme = OBJECTIVE_THEME.clone();
