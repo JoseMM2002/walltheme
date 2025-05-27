@@ -53,7 +53,7 @@ Walltheme comes with several templates and example scripts to facilitate customi
 ```bash
 # Clone the repository
 mkdir -p ~/.cache/walltheme/ && mkdir -p ~/.config/walltheme/templates
-git clone https://github.com/JoseMM2002/walltheme.nvim.git
+git clone git@github.com:JoseMM2002/walltheme.git
 cd walltheme
 # Build the project
 cargo install --path .
